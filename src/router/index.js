@@ -78,6 +78,13 @@ export const constantRoutes = [
           title: '用户管理',
           icon: 'el-icon-user-solid'
         }
+      }, {
+        path: 'sysMenu',
+        component: () => import('@/views/system/sysMenu/index'),
+        meta: {
+          title: '菜单管理',
+          icon: 'el-icon-user-solid'
+        }
       }
     ]
   },
