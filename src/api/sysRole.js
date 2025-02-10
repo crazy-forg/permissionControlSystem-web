@@ -48,3 +48,19 @@ export function removeById(data) {
   })
 }
 
+export function getRoleByUserId(userId) {
+  return request({
+    url: `/admin/system/sysRole/toAssign/${userId}`,
+    method: 'get'
+    // params: data
+  })
+}
+
+export function assignRoles(data) {
+  return request({
+    url: '/admin/system/sysRole/doAssign',
+    method: 'post',
+    data
+  })
+}
+

@@ -1,4 +1,12 @@
-import { getRoleListPage, removeById, addRole, updateRole, batchDelete } from '@/api/sysRole'
+import {
+  getRoleListPage,
+  removeById,
+  addRole,
+  updateRole,
+  batchDelete,
+  getRoleByUserId,
+  assignRoles
+} from '@/api/sysRole'
 
 const getDefaultState = () => {
   return {}
@@ -50,6 +58,24 @@ const actions = {
   batchDelete({ commit }, data) {
     return new Promise((resolve, reject) => {
       batchDelete(data).then(res => {
+        resolve(res)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  getRoleByUserId({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      getRoleByUserId(data).then(res => {
+        resolve(res)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  assignRoles({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      assignRoles(data).then(res => {
         resolve(res)
       }).catch(error => {
         reject(error)
