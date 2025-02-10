@@ -24,6 +24,9 @@ export default {
     this.fetchList()
   },
   methods: {
+    showAssignAuth(row) {
+      this.$router.push('/system/assignAuth?id=' + row.id + '&roleName=' + row.roleName)
+    },
     // 当多选选项发生变化的时候调用
     handleSelectionChange(selection) {
       console.log(selection)
@@ -175,6 +178,7 @@ export default {
             title="删除"
             @click="removeDataById(scope.row)"
           />
+          <el-button type="warning" icon="el-icon-baseball" size="mini" title="分配权限" @click="showAssignAuth(scope.row)" />
         </template>
       </el-table-column>
     </el-table>
@@ -203,6 +207,7 @@ export default {
       <span slot="footer" class="dialog-footer">
         <el-button size="small" icon="el-icon-refresh-right" @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" icon="el-icon-check" size="small" @click="saveHandler()">确 定</el-button>
+
       </span>
     </el-dialog>
   </div>
