@@ -31,3 +31,19 @@ export function removeById(id) {
   })
 }
 
+export function toAssign(roleId) {
+  return request({
+    url: `/admin/system/sysMenu/toAssign/${roleId}`,
+    method: 'get'
+  })
+}
+
+export function doAssign(data) {
+  return request({
+    url: '/admin/system/sysMenu/doAssign',
+    method: 'post',
+    data
+  })
+}
+
+

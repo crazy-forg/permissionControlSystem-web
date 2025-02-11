@@ -1,5 +1,7 @@
 <script>
 
+import { add } from 'script-ext-html-webpack-plugin/lib/custom-attributes'
+
 export default {
   name: 'SysRole',
   data() {
@@ -24,6 +26,7 @@ export default {
     this.fetchList()
   },
   methods: {
+    add,
     showAssignAuth(row) {
       this.$router.push('/system/assignAuth?id=' + row.id + '&roleName=' + row.roleName)
     },
@@ -143,7 +146,14 @@ export default {
 
     <!-- 工具条 -->
     <div class="tools-div">
-      <el-button type="success" icon="el-icon-plus" size="mini" @click="addHandler">添 加</el-button>
+      <el-button
+        type="success"
+        icon="el-icon-plus"
+        size="mini"
+        :disabled="$hasBP('bnt.sysRole.add') === false"
+        @click="addHandler"
+      >添 加
+      </el-button>
       <el-button class="btn-add" size="mini" @click="batchRemove()">批量删除</el-button>
     </div>
 
@@ -178,7 +188,13 @@ export default {
             title="删除"
             @click="removeDataById(scope.row)"
           />
-          <el-button type="warning" icon="el-icon-baseball" size="mini" title="分配权限" @click="showAssignAuth(scope.row)" />
+          <el-button
+            type="warning"
+            icon="el-icon-baseball"
+            size="mini"
+            title="分配权限"
+            @click="showAssignAuth(scope.row)"
+          />
         </template>
       </el-table-column>
     </el-table>

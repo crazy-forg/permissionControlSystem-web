@@ -1,4 +1,4 @@
-import { removeById, getMenus, addMenu, updateMenu } from '@/api/sysMenu'
+import { removeById, getMenus, addMenu, updateMenu, toAssign, doAssign } from '@/api/sysMenu'
 
 const getDefaultState = () => {
   return {}
@@ -41,6 +41,24 @@ const actions = {
   updateMenu({ commit }, data) {
     return new Promise((resolve, reject) => {
       updateMenu(data).then(res => {
+        resolve(res)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  toAssign({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      toAssign(data).then(res => {
+        resolve(res)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  doAssign({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      doAssign(data).then(res => {
         resolve(res)
       }).catch(error => {
         reject(error)
