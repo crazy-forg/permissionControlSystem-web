@@ -54,6 +54,17 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   }
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   redirect: '/log/sysLoginLog',
+  //   children: [{
+  //     path: '/log/sysLoginLog',
+  //     name: 'sysLoginLog',
+  //     component: () => import('@/views/system/sysLoginLog/index'),
+  //     meta: { title: 'Dashboard', icon: 'dashboard' }
+  //   }]
+  // }
 
   // {
   //   path: '/system',
