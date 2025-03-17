@@ -26,7 +26,7 @@ import hasBtnPermission from '@/utils/btn-permission'
  * please remove it before going online ! ! !
  */
 
-Vue.prototype.$hasBP = hasBtnPermission
+Vue.prototype.$hasButtonPermission = hasBtnPermission
 
 if (process.env.NODE_ENV === 'production') {
   const { mockXHR } = require('../mock')

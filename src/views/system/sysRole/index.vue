@@ -150,7 +150,7 @@ export default {
         type="success"
         icon="el-icon-plus"
         size="mini"
-        :disabled="$hasBP('bnt.sysRole.add') === false"
+        :disabled="$hasButtonPermission('bnt.sysRole.add') === false"
         @click="addHandler"
       >添 加
       </el-button>

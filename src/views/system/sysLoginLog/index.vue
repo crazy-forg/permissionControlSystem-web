@@ -219,7 +219,7 @@ export default {
 
     <!-- 工具条 -->
     <div class="tools-div">
-      <el-button type="success" icon="el-icon-plus" size="mini" :disabled="$hasBP('bnt.sysUser.add') === false" @click="addHandler">添 加</el-button>
+      <el-button type="success" icon="el-icon-plus" size="mini" :disabled="$hasButtonPermission('bnt.sysUser.add') === false" @click="addHandler">添 加</el-button>
     </div>
 
     <!-- 表格 -->
