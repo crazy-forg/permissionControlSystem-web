@@ -5,7 +5,7 @@ import {
   batchDelete,
   getUserById
 } from '@/api/sysLoginLog'
-import { getDeptTree } from '@/api/sysDept'
+import { addDept, getDeptTree, removeDeptById, updateDept } from '@/api/sysDept'
 
 const getDefaultState = () => {
   return {}
@@ -27,7 +27,7 @@ const actions = {
       })
     })
   },
-  getUserById({ commit }, data) {
+  getDeptById({ commit }, data) {
     return new Promise((resolve, reject) => {
       getUserById(data).then(response => {
         const { data } = response
@@ -39,34 +39,25 @@ const actions = {
   },
   removeById({ commit }, data) {
     return new Promise((resolve, reject) => {
-      removeById(data).then(res => {
+      removeDeptById(data).then(res => {
         resolve(res)
       }).catch(error => {
         reject(error)
       })
     })
   },
-  addUser({ commit }, data) {
+  addDept({ commit }, data) {
     return new Promise((resolve, reject) => {
-      addUser(data).then(res => {
+      addDept(data).then(res => {
         resolve(res)
       }).catch(error => {
         reject(error)
       })
     })
   },
-  updateUser({ commit }, data) {
+  updateDept({ commit }, data) {
     return new Promise((resolve, reject) => {
-      updateUser(data).then(res => {
-        resolve(res)
-      }).catch(error => {
-        reject(error)
-      })
-    })
-  },
-  batchDelete({ commit }, data) {
-    return new Promise((resolve, reject) => {
-      batchDelete(data).then(res => {
+      updateDept(data).then(res => {
         resolve(res)
       }).catch(error => {
         reject(error)
