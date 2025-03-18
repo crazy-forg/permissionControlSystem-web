@@ -55,18 +55,6 @@ export const constantRoutes = [
     }]
   }
   // {
-  //   path: '/',
-  //   component: Layout,
-  //   redirect: '/log/sysLoginLog',
-  //   children: [{
-  //     path: '/log/sysLoginLog',
-  //     name: 'sysLoginLog',
-  //     component: () => import('@/views/system/sysLoginLog/index'),
-  //     meta: { title: 'Dashboard', icon: 'dashboard' }
-  //   }]
-  // }
-
-  // {
   //   path: '/system',
   //   component: Layout,
   //   redirect: '/sysRole',
@@ -105,6 +93,24 @@ export const constantRoutes = [
   //         title: '角色授权'
   //       },
   //       hidden: true
+  //     },
+  //     {
+  //       path: '/system/log',
+  //       component: () => import('@/views/system/log/index'),
+  //       meta: { title: '日志管理', icon: 'dashboard' },
+  //       redirect: '/system/log/sysOperLog',
+  //       children: [{
+  //         path: 'sysOperLog',
+  //         name: 'sysOperLog',
+  //         component: () => import('@/views/system/log/sysOperLog/index'),
+  //         meta: { title: '操作日志', icon: 'dashboard' }
+  //       },
+  //       {
+  //         path: 'sysLoginLog',
+  //         name: 'sysLoginLog',
+  //         component: () => import('@/views/system/log/sysLoginLog/index'),
+  //         meta: { title: '登录日志', icon: 'dashboard' }
+  //       }]
   //     }
   //   ]
   // },
