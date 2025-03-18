@@ -207,11 +207,12 @@ export default {
 
     <!-- 工具条 -->
     <div class="tools-div">
-      <el-button type="success" icon="el-icon-plus" size="mini" :disabled="$hasButtonPermission('bnt.sysUser.add') === false" @click="addHandler">添 加</el-button>
+      <el-button type="success" icon="el-icon-plus" size="mini" :disabled="!$hasButtonPermission('bnt.sysPost.add')" @click="addHandler">添 加</el-button>
     </div>
 
     <!-- 表格 -->
     <el-table
+      v-if="$hasButtonPermission('bnt.sysPost.list')"
       v-loading="listLoading"
       :data="list"
       stripe
@@ -232,6 +233,7 @@ export default {
         <template slot-scope="scope">
           <el-switch
             v-model="scope.row.status"
+            :disabled="!$hasButtonPermission('bnt.sysPost.update')"
             :active-value="1"
             :inactive-value="0"
             @change="switchStatus(scope.row)"
@@ -241,12 +243,20 @@ export default {
 
       <el-table-column label="操作" align="center" fixed="right">
         <template slot-scope="scope">
-          <el-button type="primary" icon="el-icon-edit" size="mini" title="修改" @click="editHandler(scope.row)" />
+          <el-button
+            type="primary"
+            icon="el-icon-edit"
+            size="mini"
+            title="修改"
+            :disabled="!$hasButtonPermission('bnt.sysPost.update')"
+            @click="editHandler(scope.row)"
+          />
           <el-button
             type="danger"
             icon="el-icon-delete"
             size="mini"
             title="删除"
+            :disabled="!$hasButtonPermission('bnt.sysPost.remove')"
             @click="removeDataById(scope.row.id)"
           />
         </template>
@@ -277,26 +287,6 @@ export default {
       </span>
     </el-dialog>
 
-    <el-dialog title="分配角色" :visible.sync="dialogRoleVisible">
-      <el-form label-width="80px">
-        <el-form-item label="用户名">
-          <el-input disabled :value="sysUser.username" />
-        </el-form-item>
-
-        <el-form-item label="角色列表">
-          <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">全选
-          </el-checkbox>
-          <div style="margin: 15px 0;" />
-          <el-checkbox-group v-model="userRoleIds" @change="handleCheckedChange">
-            <el-checkbox v-for="role in allRoles" :key="role.id" :label="role.id">{{ role.roleName }}</el-checkbox>
-          </el-checkbox-group>
-        </el-form-item>
-      </el-form>
-      <div slot="footer">
-        <el-button type="primary" size="small" @click="assignRole">保存</el-button>
-        <el-button size="small" @click="dialogRoleVisible = false">取消</el-button>
-      </div>
-    </el-dialog>
   </div>
 
 </template>

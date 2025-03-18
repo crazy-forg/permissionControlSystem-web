@@ -103,6 +103,7 @@ export default {
 
     <!-- 表格 -->
     <el-table
+      v-if="$hasButtonPermission('bnt.sysOperLog.list')"
       v-loading="listLoading"
       :data="list"
       stripe

@@ -219,11 +219,12 @@ export default {
 
     <!-- 工具条 -->
     <div class="tools-div">
-      <el-button type="success" icon="el-icon-plus" size="mini" :disabled="$hasButtonPermission('bnt.sysUser.add') === false" @click="addHandler">添 加</el-button>
+      <el-button type="success" icon="el-icon-plus" size="mini" :disabled="!$hasButtonPermission('bnt.sysUser.add')" @click="addHandler">添 加</el-button>
     </div>
 
     <!-- 表格 -->
     <el-table
+      v-if="$hasButtonPermission('bnt.sysUser.list')"
       v-loading="listLoading"
       :data="list"
       stripe
@@ -254,12 +255,20 @@ export default {
 
       <el-table-column label="操作" align="center" fixed="right">
         <template slot-scope="scope">
-          <el-button type="primary" icon="el-icon-edit" size="mini" title="修改" @click="editHandler(scope.row)" />
+          <el-button
+            type="primary"
+            icon="el-icon-edit"
+            size="mini"
+            title="修改"
+            :disabled="!$hasButtonPermission('bnt.sysUser.update')"
+            @click="editHandler(scope.row)"
+          />
           <el-button
             type="danger"
             icon="el-icon-delete"
             size="mini"
             title="删除"
+            :disabled="!$hasButtonPermission('bnt.sysUser.remove')"
             @click="removeDataById(scope.row.id)"
           />
           <el-button
@@ -267,6 +276,7 @@ export default {
             icon="el-icon-baseball"
             size="mini"
             title="分配角色"
+            :disabled="!$hasButtonPermission('bnt.sysUser.assignRole')"
             @click="showAssignRole(scope.row)"
           />
         </template>

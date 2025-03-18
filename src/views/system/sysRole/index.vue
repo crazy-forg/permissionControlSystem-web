@@ -147,15 +147,21 @@ export default {
         type="success"
         icon="el-icon-plus"
         size="mini"
-        :disabled="$hasButtonPermission('bnt.sysRole.add') === false"
+        :disabled="!$hasButtonPermission('bnt.sysRole.add')"
         @click="addHandler"
       >添 加
       </el-button>
-      <el-button class="btn-add" size="mini" @click="batchRemove()">批量删除</el-button>
+      <el-button
+        class="btn-add"
+        size="mini"
+        :disabled="!$hasButtonPermission('bnt.sysRole.remove')"
+        @click="batchRemove()"
+      >批量删除</el-button>
     </div>
 
     <!-- 表格 -->
     <el-table
+      v-if="$hasButtonPermission('bnt.sysRole.list') "
       v-loading="listLoading"
       :data="list"
       stripe
@@ -182,7 +188,7 @@ export default {
             icon="el-icon-edit"
             size="mini"
             title="修改"
-            :disabled="scope.row.id === '23'"
+            :disabled="scope.row.id === '23' || !$hasButtonPermission('bnt.sysRole.update')"
             @click="editHandler(scope.row)"
           />
           <el-button
@@ -190,7 +196,7 @@ export default {
             icon="el-icon-delete"
             size="mini"
             title="删除"
-            :disabled="scope.row.id === '23'"
+            :disabled="scope.row.id === '23' || !$hasButtonPermission('bnt.sysRole.remove') "
             @click="removeDataById(scope.row)"
           />
           <el-button
@@ -198,7 +204,7 @@ export default {
             icon="el-icon-baseball"
             size="mini"
             title="分配权限"
-            :disabled="scope.row.id === '23'"
+            :disabled="scope.row.id === '23' || !$hasButtonPermission('bnt.sysRole.assignAuth')"
             @click="showAssignAuth(scope.row)"
           />
         </template>

@@ -3,9 +3,16 @@
 
     <!--     工具条-->
     <div class="tools-div">
-      <el-button type="success" icon="el-icon-plus" size="mini" @click="add()">添 加</el-button>
+      <el-button
+        type="success"
+        icon="el-icon-plus"
+        size="mini"
+        :disabled="!$hasButtonPermission('bnt.sysDept.add')"
+        @click="add()"
+      >添 加</el-button>
     </div>
     <el-table
+      v-if="$hasButtonPermission('bnt.sysDept.list')"
       :data="sysDeptList"
       style="width: 100%;margin-bottom: 20px;margin-top: 10px;"
       row-key="id"
@@ -36,15 +43,23 @@
             icon="el-icon-plus"
             size="mini"
             title="添加下级节点"
+            :disabled="!$hasButtonPermission('bnt.sysDept.add')"
             @click="add(scope.row)"
           />
-          <el-button type="primary" icon="el-icon-edit" size="mini" title="修改" @click="edit(scope.row)" />
+          <el-button
+            type="primary"
+            icon="el-icon-edit"
+            size="mini"
+            title="修改"
+            :disabled="!$hasButtonPermission('bnt.sysDept.update')"
+            @click="edit(scope.row)"
+          />
           <el-button
             type="danger"
             icon="el-icon-delete"
             size="mini"
             title="删除"
-            :disabled="scope.row.children.length > 0 ||sysDeptList.length === 1"
+            :disabled="scope.row.children.length > 0 ||sysDeptList.length === 1 || !$hasButtonPermission('bnt.sysDept.remove')"
             @click="removeDataById(scope.row.id)"
           />
         </template>
@@ -230,7 +245,6 @@ export default {
 
     // 添加或更新
     saveOrUpdate() {
-
       this.$refs.dataForm.validate(valid => {
         if (valid) {
           this.saveBtnDisabled = true // 防止表单重复提交
