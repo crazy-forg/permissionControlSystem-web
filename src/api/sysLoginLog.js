@@ -2,9 +2,9 @@ import request from '@/utils/request'
 
 export function getLoginLogListPage(data) {
   return request({
-    url: `/admin/system/sysLoginLog/${data.page}/${data.limit}`,
-    method: 'get'
-    // params: data
+    url: `/admin/system/sysLoginLog/list`,
+    method: 'get',
+    params: data
   })
 }
 
