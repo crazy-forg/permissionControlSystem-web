@@ -24,35 +24,26 @@ export function getUserById(data) {
   })
 }
 
-export function addUser(data) {
+export function addDept(data) {
   return request({
-    url: '/admin/system/sysUser/addUser',
+    url: '/admin/system/sysDept/save',
     method: 'post',
     data
   })
 }
 
-export function updateUser(data) {
+export function updateDept(data) {
   return request({
-    url: '/admin/system/sysUser/update',
-    method: 'post',
+    url: '/admin/system/sysDept/update',
+    method: 'put',
     data
   })
 }
 
-export function batchDelete(data) {
+export function removeDeptById(id) {
   return request({
-    url: '/admin/system/sysUser/batchDelete',
-    method: 'post',
-    data
-  })
-}
-
-export function removeById(data) {
-  return request({
-    url: `/admin/system/sysUser/remove/${data.id}`,
-    method: 'delete',
-    data
+    url: `/admin/system/sysDept/remove/${id}`,
+    method: 'delete'
   })
 }
 
